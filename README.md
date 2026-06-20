@@ -1,35 +1,39 @@
 # MyDB — A Relational Database Engine from Scratch
 
-> Building to understand how databases actually work under the hood.
+
+ **Work in progress** — building a database from scratch in Go to understand how storage engines, indexing, and query execution actually work under the hood.
 
 ## Why I built this
-Databases are used everywhere but rarely understood at the implementation level. This project is my attempt to build one from first principles.
 
-## What it supports
-- SQL-like query parsing (SELECT, INSERT, UPDATE, DELETE)
-- B+tree / page-based storage engine
-- Basic indexing for faster lookups
-- In-memory and file-backed storage modes
-- Transaction support (in progress)
+Databases are used everywhere but rarely understood at the implementation level. This is my attempt to build one from first principles, in public, one layer at a time.
 
-## Tech stack
-`Go` `Standard Library only`
+## Current status
 
-## Architecture
-```
+| Component | Status |
+|---|---|
+| Disk-backed file storage | ✅ Working — can persist data to disk |
+| Page management | 🚧 In progress |
+| B+tree indexing | ⬜ Not started |
+| SQL parser (SELECT/INSERT/UPDATE/DELETE) | ⬜ Not started |
+| Query planner / execution engine | ⬜ Not started |
+| Transactions | ⬜ Not started |
+
+## Planned architecture
 Client query → Parser → Planner → Execution Engine → Storage Layer
-```
+## Tech stack
 
-## How to build
+Go (standard library only — no external dependencies, intentionally)
+
+## Running it
+
 ```bash
-git clone https://github.com/your-username/mydb
+git clone https://github.com/nerdnavya/mydb
 cd mydb
-mkdir build && cd build
-cmake .. && make
-./mydb
+go run .
 ```
 
-## What I learned
-- How B+trees enable O(log n) lookups
-- Page management and disk I/O patterns
-- How SQL parsers tokenize and plan queries
+Currently supports writing and persisting data to disk for any given file — this is the first working piece of the storage layer. Query parsing, indexing, and the execution engine are not built yet (see status table above).
+
+## What I'm learning
+
+* How page management and disk I/O actually work, not just in theory
