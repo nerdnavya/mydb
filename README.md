@@ -11,9 +11,10 @@ Databases are used everywhere but rarely understood at the implementation level.
 
 | Component | Status |
 |---|---|
-| Disk-backed file storage | ✅ Working — can persist data to disk |
+| Disk-backed file storage | ✅ Working — Implemented atomic file writes using fsync and rename — guarantees zero data corruption on crash |
+| B+Tree node structure | ✅ Working — page layout, key/value access |
+| B+Tree insertion/search | 🚧 In progress |
 | Page management | 🚧 In progress |
-| B+tree indexing | ⬜ Not started |
 | SQL parser (SELECT/INSERT/UPDATE/DELETE) | ⬜ Not started |
 | Query planner / execution engine | ⬜ Not started |
 | Transactions | ⬜ Not started |
@@ -37,3 +38,7 @@ Currently supports writing and persisting data to disk for any given file — th
 ## What I'm learning
 
 * How page management and disk I/O actually work, not just in theory
+## Key concepts implemented
+- **Atomic writes** — temp file + fsync + rename pattern
+- **Page layout** — fixed 4KB pages matching OS page size
+- **B+Tree node encoding** — binary layout with offset table for O(1) key access
