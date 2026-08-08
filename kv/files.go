@@ -1,7 +1,6 @@
 package kv
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -45,9 +44,8 @@ func SaveData(filename string, data []byte) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("dirName:", dirName)
+
 	dir, err := os.Open(dirName)
-	fmt.Println("open error:", err)
 	if err != nil {
 		return err
 	}
